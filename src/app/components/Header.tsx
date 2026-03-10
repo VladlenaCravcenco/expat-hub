@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
 import type { MouseEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { scrollToSection } from '../utils/navigation';
-import logoImg from 'figma:asset/07a56458d655391b3f53bdec87d66379d66ee203.png';
+// Removed figma:asset import — using inline logo instead
 import { useLanguage } from '../context/LanguageContext';
 import type { Lang } from '../i18n/translations';
 
@@ -137,13 +137,36 @@ export function Header() {
         <a
           href="#"
           onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          style={{ flexShrink: 0, display: 'flex', alignItems: 'center', textDecoration: 'none' }}
+          style={{ flexShrink: 0, display: 'flex', alignItems: 'center', textDecoration: 'none', gap: 8 }}
         >
-          <img
-            src={logoImg}
-            alt="LEX Business Hub"
-            style={{ height: 36, width: 'auto', objectFit: 'contain', display: 'block' }}
-          />
+          <span style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: '1.1rem',
+            fontWeight: 700,
+            color: '#2F71BE',
+            letterSpacing: '0.01em',
+            lineHeight: 1,
+          }}>
+            LEX
+          </span>
+          <span style={{
+            width: 1,
+            height: 18,
+            background: '#dde5f0',
+            display: 'block',
+            flexShrink: 0,
+          }} />
+          <span style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.7rem',
+            fontWeight: 600,
+            color: '#0f172a',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            lineHeight: 1.2,
+          }}>
+            BUSINESS<br/>HUB
+          </span>
         </a>
 
         {/* ── DESKTOP NAV ── */}

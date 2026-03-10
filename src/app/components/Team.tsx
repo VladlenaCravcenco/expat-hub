@@ -3,10 +3,10 @@ import { useInView } from 'motion/react';
 import { useRef, useState } from 'react';
 import { Instagram, Linkedin, Calendar, Star } from 'lucide-react';
 
-// Team member photos
-import photo1 from "figma:asset/9a46d32d61e2b84efbd1f68e0bf5b7bd9acc796f.png";
-import photo2 from "figma:asset/7b672089d431fcae8c93a7d5c4652f7a31423dee.png";
-import photo3 from "figma:asset/87c976db096c62555b4e7e70f18a98da0a68fd5a.png";
+// Team member photos — Unsplash (works everywhere including Vercel)
+const photo1 = 'https://images.unsplash.com/photo-1736939681295-bb2e6759dddc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMGxhd3llciUyMGJ1c2luZXNzJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzczMTQ3NzA5fDA&ixlib=rb-4.1.0&q=80&w=1080';
+const photo2 = 'https://images.unsplash.com/photo-1720874129553-1d2e66076b16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMG1hcmtldGluZyUyMG1hbmFnZXIlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzMxNDIyMDl8MA&ixlib=rb-4.1.0&q=80&w=1080';
+const photo3 = 'https://images.unsplash.com/photo-1758518731009-66fc99eb20e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzc3dvbWFuJTIwcG9ydHJhaXQlMjBvZmZpY2V8ZW58MXx8fHwxNzczMTQwNDQ5fDA&ixlib=rb-4.1.0&q=80&w=1080';
 
 const team = [
   {
@@ -37,7 +37,7 @@ const team = [
       {
         author: 'Елена М.',
         rating: 5,
-        text: 'Спасибо огромное за оперативность! Перевела все документы за день, очень выручила с открытием компании в Румынии.',
+        text: 'Спасибо огромное за оперативность! Перевела все документы за день, очень выру��ила с открытием компании в Румынии.',
         date: '1 месяц назад',
       },
       {
@@ -76,7 +76,7 @@ const team = [
       {
         author: 'Мария П.',
         rating: 5,
-        text: 'Профессионал своего дела! Пом��гла получить все разрешения для открытия магазина в Бухаресте. Рекомендую!',
+        text: 'Профессионал своего дела! Помгла получить все разрешения для открытия магазина в Бухаресте. Рекомендую!',
         date: '3 недели назад',
       },
       {
@@ -91,7 +91,7 @@ const team = [
     name: 'Алёна Руссу',
     role: 'Маркетинг',
     image: photo2,
-    about: 'Маркетолог с фокусом на развитие бизнеса в новых рынках. Создаю стратегии продвижения для компаний, которые расширяют деятельность в Румынии и Восточной Европе.',
+    about: 'Маркетолог с фокусом на развитие бизнеса в новых рынках. Создаю стратегии продвижения ��ля компаний, которые расширяют деятельность в Румынии и Восточной Европе.',
     highlights: [
       { label: 'Опыт работы', value: '7+ лет' },
       { label: 'Проектов реализовано', value: '90+' },

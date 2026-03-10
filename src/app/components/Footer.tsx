@@ -1,8 +1,6 @@
 import type { MouseEvent } from 'react';
 import { scrollToSection } from '../utils/navigation';
-import logoImg from 'figma:asset/07a56458d655391b3f53bdec87d66379d66ee203.png';
-import anpcImg from 'figma:asset/d03126fbedbc321243588588ef052a0ef39545f6.png';
-import solImg from 'figma:asset/15dcee8faab2f88652451f67e6aa3727f8453cb1.png';
+// figma:asset imports removed — using inline logo and badge components
 import { useLanguage } from '../context/LanguageContext';
 
 export function Footer() {
@@ -33,11 +31,27 @@ export function Footer() {
           }}>
             {/* Brand */}
             <div>
-              <img
-                src={logoImg}
-                alt="LEX Business Hub"
-                style={{ height: 28, width: 'auto', objectFit: 'contain', marginBottom: 12 }}
-              />
+              {/* Inline text logo */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                <span style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.1rem',
+                  fontWeight: 700,
+                  color: '#2F71BE',
+                  letterSpacing: '0.01em',
+                  lineHeight: 1,
+                }}>LEX</span>
+                <span style={{ width: 1, height: 18, background: '#dde5f0', display: 'block' }} />
+                <span style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '0.65rem',
+                  fontWeight: 600,
+                  color: '#0f172a',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase' as const,
+                  lineHeight: 1.2,
+                }}>BUSINESS<br/>HUB</span>
+              </div>
               <p style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.85rem',
@@ -184,35 +198,53 @@ export function Footer() {
               Made by GROWUP AGENCY
             </a>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              {/* ANPC badge — text version */}
               <a
                 href="https://anpc.ro/ce-este-sal/"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Soluționarea Alternativă a Litigiilor"
-                style={{ display: 'inline-flex', opacity: 0.7, transition: 'opacity 0.2s' }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  padding: '4px 10px', borderRadius: 6,
+                  border: '1px solid #dde5f0', background: '#f8fafc',
+                  textDecoration: 'none', opacity: 0.8, transition: 'opacity 0.2s',
+                }}
                 onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '1'}
-                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.7'}
+                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.8'}
               >
-                <img
-                  src={anpcImg}
-                  alt="ANPC"
-                  style={{ height: 36, width: 'auto', objectFit: 'contain' }}
-                />
+                <span style={{
+                  fontFamily: 'var(--font-sans)', fontSize: '0.6rem',
+                  fontWeight: 700, color: '#1e40af', letterSpacing: '0.05em',
+                }}>ANPC</span>
+                <span style={{
+                  fontFamily: 'var(--font-sans)', fontSize: '0.55rem',
+                  color: '#64748b', lineHeight: 1.2,
+                }}>SAL</span>
               </a>
+              {/* SOL badge — text version */}
               <a
                 href="https://ec.europa.eu/consumers/odr"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Online Dispute Resolution"
-                style={{ display: 'inline-flex', opacity: 0.7, transition: 'opacity 0.2s' }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  padding: '4px 10px', borderRadius: 6,
+                  border: '1px solid #dde5f0', background: '#f8fafc',
+                  textDecoration: 'none', opacity: 0.8, transition: 'opacity 0.2s',
+                }}
                 onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '1'}
-                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.7'}
+                onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.opacity = '0.8'}
               >
-                <img
-                  src={solImg}
-                  alt="SOL - Soluționarea Online a Litigiilor"
-                  style={{ height: 36, width: 'auto', objectFit: 'contain' }}
-                />
+                <span style={{
+                  fontFamily: 'var(--font-sans)', fontSize: '0.6rem',
+                  fontWeight: 700, color: '#1e40af', letterSpacing: '0.05em',
+                }}>SOL</span>
+                <span style={{
+                  fontFamily: 'var(--font-sans)', fontSize: '0.55rem',
+                  color: '#64748b', lineHeight: 1.2,
+                }}>ODR</span>
               </a>
             </div>
           </div>
