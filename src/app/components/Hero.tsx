@@ -3,7 +3,7 @@ import type { MouseEvent } from 'react';
 import { scrollToSection } from '../utils/navigation';
 import { useLanguage } from '../context/LanguageContext';
 
-const HERO_IMG = 'https://images.unsplash.com/photo-1765279077820-d3f4f2bcdca5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnbGFzcyUyMG9mZmljZSUyMGJ1aWxkaW5nJTIwZmFjYWRlJTIwbW9kZXJuJTIwdXJiYW58ZW58MXx8fHwxNzczMTM4ODc2fDA&ixlib=rb-4.1.0&q=80&w=1080';
+const HERO_IMG = 'https://images.unsplash.com/photo-1550951196-1992d5cb8c2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxCdWNoYXJlc3QlMjBSb21hbmlhJTIwc2t5bGluZSUyMG5pZ2h0JTIwbGlnaHRzJTIwY2l0eXxlbnwxfHx8fDE3NzMxNTYyNzF8MA&ixlib=rb-4.1.0&q=80&w=1080';
 
 interface HeroProps {
   onOpenModal: () => void;
@@ -57,7 +57,7 @@ export function Hero({ onOpenModal }: HeroProps) {
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to right, rgba(20,60,120,0.55) 0%, rgba(20,60,120,0.28) 55%, rgba(20,60,120,0.05) 100%)',
+            background: 'linear-gradient(105deg, rgba(8,12,20,0.88) 0%, rgba(8,12,20,0.65) 50%, rgba(8,12,20,0.25) 100%)',
           }} />
 
           {/* Text content */}
