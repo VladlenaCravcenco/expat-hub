@@ -23,7 +23,7 @@ function BrandItem({ brand }: { brand: typeof brands[0] }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      border: '1px solid #e2e8f0',
+      
       borderRadius: 10,
       padding: '0 20px',
       overflow: 'hidden',
