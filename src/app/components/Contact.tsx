@@ -232,7 +232,7 @@ export function Contact() {
                   </a>
                   {/* TikTok */}
                   <a
-                    href="#"
+                    href="https://www.tiktok.com/@lex.business.hub?_r=1&_t=ZN-94bGXYWWBKI"
                     aria-label="TikTok"
                     style={{
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
