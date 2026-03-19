@@ -106,19 +106,42 @@ export function Footer() {
             <div className="col-span-2 md:col-span-2">
               <p style={colLabelStyle}>{t.footer.contacts}</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                {['+40 734 468 311', 'info@lexbusinesshub.ro', 'Louis Blanc, 26, Sector 1, Et. 3', t.footer.addressHint].map((line, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.85rem',
-                      color: i === 1 ? '#2F71BE' : '#64748b',
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {line}
-                  </span>
-                ))}
+                {/* Телефон — кликабельный */}
+<a
+  href="tel:+40774433562"
+  style={{ fontFamily: 'var(--font-sans)', fontSize: '0.85rem', color: '#64748b', textDecoration: 'none', lineHeight: 1.5, transition: 'color 0.2s' }}
+  onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = '#2F71BE'}
+  onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = '#64748b'}
+>
+  +40 774 433 562
+</a>
+
+{/* Email — кликабельный */}
+<a
+  href="mailto:info@lexbusinesshub.ro"
+  style={{ fontFamily: 'var(--font-sans)', fontSize: '0.85rem', color: '#2F71BE', textDecoration: 'none', lineHeight: 1.5 }}
+  onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = '#235d9e'}
+  onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = '#2F71BE'}
+>
+  info@lexbusinesshub.ro
+</a>
+
+{/* Адрес — ссылка на Google Maps */}
+<a
+  href="https://www.google.com/maps/dir/?api=1&destination=Strada+Louis+Blanc+26,+Sector+1,+Bucharest,+Romania"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ fontFamily: 'var(--font-sans)', fontSize: '0.85rem', color: '#64748b', textDecoration: 'none', lineHeight: 1.5, transition: 'color 0.2s' }}
+  onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = '#2F71BE'}
+  onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = '#64748b'}
+>
+  Louis Blanc, 26, Sector 1, Et. 3
+</a>
+
+{/* Подсказка — просто текст, <span> оставляем */}
+<span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.85rem', color: '#64748b', lineHeight: 1.5 }}>
+  {t.footer.addressHint}
+</span>
               </div>
             </div>
           </div>

@@ -11,6 +11,7 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { LanguageProvider } from './context/LanguageContext';
+import { FloatingContacts } from './components/FloatingContacts';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,6 +66,7 @@ function App() {
         <Contact />
         <Footer />
         <ContactModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+        <FloatingContacts />
       </div>
     </LanguageProvider>
   );

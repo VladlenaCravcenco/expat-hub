@@ -97,13 +97,55 @@ export function Contact() {
               fontSize: 'clamp(0.9rem, 1.3vw, 1.0625rem)',
               color: '#64748b',
               lineHeight: 1.7,
-              marginBottom: 40,
+              marginBottom: 20,
             }}>
               {t.contact.description}
             </p>
 
+            {/* General phone highlight */}
+            <a
+              href="tel:+40774433562"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 10,
+                marginBottom: 40,
+                textDecoration: 'none',
+                padding: '10px 18px',
+                borderRadius: 10,
+                background: '#2F71BE',
+                transition: 'background 0.2s, box-shadow 0.2s',
+                boxShadow: '0 4px 18px rgba(47,113,190,0.28)',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = '#235d9e';
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 6px 24px rgba(47,113,190,0.38)';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = '#2F71BE';
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 18px rgba(47,113,190,0.28)';
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '1.0625rem',
+                fontWeight: 700,
+                color: '#ffffff',
+                letterSpacing: '-0.01em',
+              }}>
+                +40 774 433 562
+              </span>
+            </a>
+
             {/* Phones */}
             <div style={{ marginBottom: 28 }}>
+
+              {/* General phone — main */}
+              
+
               <p style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.7rem',
