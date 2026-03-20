@@ -241,6 +241,7 @@ export const translations = {
       phoneLabels: ['Traduceri legalizate', 'Servicii juridice', 'Marketing și înregistrare'],
       address: 'Adresa biroului',
       addressHint: 'București · Reper: Piața Victoriei',
+      getDirections: 'Traseu',
       email: 'Email',
       form: {
         name: 'Numele dvs.',
@@ -287,7 +288,17 @@ export const translations = {
       subjects: ['Înregistrarea afacerii', 'Traduceri legalizate', 'Consultații', 'Altele'],
       close: 'Închide',
     },
+    cookie: {
+  title: 'Folosim cookie-uri',
+  text: 'Utilizăm cookie-uri și instrumente similare (inclusiv Meta Pixel) pentru a îmbunătăți experiența dvs., a analiza traficul și a afișa publicitate relevantă. Prin acceptare, confirmați că aveți cel puțin 16 ani și că sunteți de acord cu ',
+  policy: 'Politica de confidențialitate',
+  accept: 'Accept toate',
+  decline: 'Refuz',
+  settings: 'Setări',
+},
   },
+
+  
 
   ru: {
     nav: {
@@ -519,6 +530,7 @@ export const translations = {
       phoneLabels: ['Легализованные переводы', 'Юридические услуги', 'Маркетинг и регистрация'],
       address: 'Адрес офиса',
       addressHint: 'Бухарест · Ориентир: Piața Victoriei',
+      getDirections: 'Маршрут',
       email: 'Email',
       form: {
         name: 'Ваше имя',
@@ -563,7 +575,18 @@ export const translations = {
       subjects: ['Регистрация бизнеса', 'Легализованные переводы', 'Консультации', 'Другое'],
       close: 'Закрыть',
     },
+    cookie: {
+  title: 'Мы используем cookie',
+  text: 'Мы используем cookie и аналогичные инструменты (в том числе Meta Pixel) для улучшения вашего опыта, анализа трафика и показа релевантной рекламы. Принимая, вы подтверждаете, что вам не менее 16 лет и вы соглашаетесь с ',
+  policy: 'Политикой конфиденциальности',
+  accept: 'Принять все',
+  decline: 'Отказаться',
+  settings: 'Настройки',
+},
   },
+
+  
+ 
 
   en: {
     nav: {
@@ -795,6 +818,7 @@ export const translations = {
       phoneLabels: ['Certified Translations', 'Legal Services', 'Marketing & Registration'],
       address: 'Office Address',
       addressHint: 'Bucharest · Landmark: Piața Victoriei',
+      getDirections: 'Directions',
       email: 'Email',
       form: {
         name: 'Your Name',
@@ -839,6 +863,14 @@ export const translations = {
       subjects: ['Business Registration', 'Certified Translations', 'Consultations', 'Other'],
       close: 'Close',
     },
+    cookie: {
+  title: 'We use cookies',
+  text: 'We use cookies and similar tools (including Meta Pixel) to improve your experience, analyse traffic and show relevant advertising. By accepting, you confirm you are at least 16 years old and agree to our ',
+  policy: 'Privacy Policy',
+  accept: 'Accept all',
+  decline: 'Decline',
+  settings: 'Settings',
+},
   },
 
   uk: {
@@ -1071,6 +1103,7 @@ export const translations = {
       phoneLabels: ['Легалізовані переклади', 'Юридичні послуги', 'Маркетинг і реєстрація'],
       address: 'Адреса офісу',
       addressHint: 'Бухарест · Орієнтир: Piața Victoriei',
+      getDirections: 'Маршрут',
       email: 'Email',
       form: {
         name: "Ваше ім'я",
@@ -1115,5 +1148,14 @@ export const translations = {
       subjects: ['Реєстрація бізнесу', 'Легалізовані переклади', 'Консультації', 'Інше'],
       close: 'Закрити',
     },
+    cookie: {
+  title: 'Ми використовуємо cookie',
+  text: 'Ми використовуємо cookie та подібні інструменти (включаючи Meta Pixel) для покращення вашого досвіду, аналізу трафіку та показу релевантної реклами. Приймаючи, ви підтверджуєте, що вам не менше 16 років і ви погоджуєтесь з ',
+  policy: 'Політикою конфіденційності',
+  accept: 'Прийняти все',
+  decline: 'Відмовитись',
+  settings: 'Налаштування',
+},
   },
 } as const;
+

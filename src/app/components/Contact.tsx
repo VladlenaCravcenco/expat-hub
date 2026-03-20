@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useInView } from 'motion/react';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { sendToTelegram } from '../utils/telegram';
 import { PhoneInputField } from './PhoneInputField';
 import { useLanguage } from '../context/LanguageContext';
@@ -29,16 +30,23 @@ export function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', phone: '', subject: '', message: '' });
+  const [phoneValid, setPhoneValid] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'not_configured'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!phoneValid) {
+      setStatus('idle');
+      return;
+    }
     setStatus('sending');
     try {
       await sendToTelegram({ ...formData, subject: formData.subject || t.contact.form.subjects[0] });
       setStatus('success');
-      setTimeout(() => { setStatus('idle'); setFormData({ name: '', phone: '', subject: '', message: '' }); }, 3000);
+      // Redirect to thank-you page — Meta Pixel Lead event fires there
+      setTimeout(() => navigate('/thank-you'), 400);
     } catch (err: any) {
       if (err?.message === 'NOT_CONFIGURED') setStatus('not_configured');
       else setStatus('error');
@@ -142,10 +150,6 @@ export function Contact() {
 
             {/* Phones */}
             <div style={{ marginBottom: 28 }}>
-
-              {/* General phone — main */}
-              
-
               <p style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.7rem',
@@ -160,19 +164,10 @@ export function Contact() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {phones.map((p: { label: string; value: string }, i: number) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8 }}>
-                    <span style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.8125rem',
-                      color: '#94a3b8',
-                      flexShrink: 0,
-                    }}>
+                    <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', color: '#94a3b8', flexShrink: 0 }}>
                       {p.label}
                     </span>
-                    <span style={{
-                      borderBottom: '1px dashed #e2e8f0',
-                      flex: 1,
-                      marginBottom: 3,
-                    }} />
+                    <span style={{ borderBottom: '1px dashed #e2e8f0', flex: 1, marginBottom: 3 }} />
                     <a
                       href={`tel:${p.value.replace(/\s/g, '')}`}
                       style={{
@@ -246,15 +241,9 @@ export function Contact() {
                   {t.contact.getDirections ?? 'Маршрут'}
                 </a>
               </div>
-              {/* Embedded Google Map */}
               <div
                 className="block md:hidden"
-                style={{
-                  borderRadius: 12,
-                  overflow: 'hidden',
-                  border: '1.5px solid #e8eef6',
-                  boxShadow: '0 2px 12px rgba(47,113,190,0.07)',
-                }}
+                style={{ borderRadius: 12, overflow: 'hidden', border: '1.5px solid #e8eef6', boxShadow: '0 2px 12px rgba(47,113,190,0.07)' }}
               >
                 <iframe
                   title="LEX BUSINESS HUB — офис"
@@ -270,7 +259,7 @@ export function Contact() {
 
             <div style={{ height: 1, background: '#e8eef6', marginBottom: 28 }} />
 
-            {/* Email + social icons in one row */}
+            {/* Email + socials */}
             <div>
               <p style={{
                 fontFamily: 'var(--font-sans)',
@@ -284,75 +273,32 @@ export function Contact() {
                 {t.contact.email}
               </p>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-                <p style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '1rem',
-                  fontWeight: 600,
-                  color: '#2F71BE',
-                  margin: 0,
-                }}>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 600, color: '#2F71BE', margin: 0 }}>
                   info@lexbusinesshub.ro
                 </p>
                 <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-                  {/* Facebook */}
-                  <a
-                    href="https://www.facebook.com/profile.php?id=61587770663779&mibextid=wwXIfr&rdid=JKmq4rSY34QHWmq3"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      width: 36, height: 36, borderRadius: 8,
-                      background: '#f1f5f9', color: '#64748b',
-                      transition: 'background 0.2s, color 0.2s',
-                      textDecoration: 'none',
-                    }}
+                  <a href="https://www.facebook.com/profile.php?id=61587770663779&mibextid=wwXIfr&rdid=JKmq4rSY34QHWmq3" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 8, background: '#f1f5f9', color: '#64748b', transition: 'background 0.2s, color 0.2s', textDecoration: 'none' }}
                     onMouseEnter={e => socialHover(e.currentTarget as HTMLAnchorElement, true)}
                     onMouseLeave={e => socialHover(e.currentTarget as HTMLAnchorElement, false)}
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                   </a>
-                  {/* Instagram */}
-                  <a
-                    href="https://www.instagram.com/lexbusinesshub.romania?igsh=MXNiOWJ4dzcwbTUyMA%3D%3D&utm_source=qr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      width: 36, height: 36, borderRadius: 8,
-                      background: '#f1f5f9', color: '#64748b',
-                      transition: 'background 0.2s, color 0.2s',
-                      textDecoration: 'none',
-                    }}
+                  <a href="https://www.instagram.com/lexbusinesshub.romania?igsh=MXNiOWJ4dzcwbTUyMA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 8, background: '#f1f5f9', color: '#64748b', transition: 'background 0.2s, color 0.2s', textDecoration: 'none' }}
                     onMouseEnter={e => socialHover(e.currentTarget as HTMLAnchorElement, true)}
                     onMouseLeave={e => socialHover(e.currentTarget as HTMLAnchorElement, false)}
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                      <circle cx="12" cy="12" r="4"/>
-                      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
                     </svg>
                   </a>
-                  {/* TikTok */}
-                  <a
-                    href="#"
-                    aria-label="TikTok"
-                    style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      width: 36, height: 36, borderRadius: 8,
-                      background: '#f1f5f9', color: '#64748b',
-                      transition: 'background 0.2s, color 0.2s',
-                      textDecoration: 'none',
-                    }}
+                  <a href="#" aria-label="TikTok"
+                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 8, background: '#f1f5f9', color: '#64748b', transition: 'background 0.2s, color 0.2s', textDecoration: 'none' }}
                     onMouseEnter={e => socialHover(e.currentTarget as HTMLAnchorElement, true)}
                     onMouseLeave={e => socialHover(e.currentTarget as HTMLAnchorElement, false)}
                   >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.17 8.17 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
-                    </svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.17 8.17 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
                   </a>
                 </div>
               </div>
@@ -367,21 +313,12 @@ export function Contact() {
           >
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
 
-              {/* Name */}
               <div>
-                <label style={{
-                  display: 'block',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.8125rem',
-                  fontWeight: 600,
-                  color: '#475569',
-                  marginBottom: 6,
-                }}>
+                <label style={{ display: 'block', fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', fontWeight: 600, color: '#475569', marginBottom: 6 }}>
                   {t.contact.form.name}
                 </label>
                 <input
-                  type="text" name="name"
-                  value={formData.name} onChange={handleChange} required
+                  type="text" name="name" value={formData.name} onChange={handleChange} required
                   placeholder={t.contact.form.namePlaceholder}
                   style={inputBase}
                   onFocus={e => Object.assign(e.currentTarget.style, inputFocus)}
@@ -389,7 +326,6 @@ export function Contact() {
                 />
               </div>
 
-              {/* Phone */}
               <div>
                 <PhoneInputField
                   value={formData.phone}
@@ -400,16 +336,8 @@ export function Contact() {
                 />
               </div>
 
-              {/* Subject */}
               <div>
-                <label style={{
-                  display: 'block',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.8125rem',
-                  fontWeight: 600,
-                  color: '#475569',
-                  marginBottom: 6,
-                }}>
+                <label style={{ display: 'block', fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', fontWeight: 600, color: '#475569', marginBottom: 6 }}>
                   {t.contact.form.subject}
                 </label>
                 <select
@@ -426,22 +354,12 @@ export function Contact() {
                 </select>
               </div>
 
-              {/* Message */}
               <div>
-                <label style={{
-                  display: 'block',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '0.8125rem',
-                  fontWeight: 600,
-                  color: '#475569',
-                  marginBottom: 6,
-                }}>
+                <label style={{ display: 'block', fontFamily: 'var(--font-sans)', fontSize: '0.8125rem', fontWeight: 600, color: '#475569', marginBottom: 6 }}>
                   {t.contact.form.message}
                 </label>
                 <textarea
-                  name="message"
-                  value={formData.message} onChange={handleChange}
-                  required rows={5}
+                  name="message" value={formData.message} onChange={handleChange} required rows={5}
                   placeholder={t.contact.form.messagePlaceholder}
                   style={{ ...inputBase, resize: 'none' }}
                   onFocus={e => Object.assign(e.currentTarget.style, { ...inputFocus, resize: 'none' })}
@@ -449,7 +367,6 @@ export function Contact() {
                 />
               </div>
 
-              {/* Submit */}
               <button
                 type="submit"
                 disabled={status === 'sending' || status === 'success'}
