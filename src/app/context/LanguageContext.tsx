@@ -9,27 +9,26 @@ const DEFAULT_LANG: Lang = 'ru';
 
 function getCookieLang(): Lang {
   if (typeof document === 'undefined') return DEFAULT_LANG;
+  
+  // 1. Проверяем URL параметры первым - это приоритет
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (urlLang && LANGS.includes(urlLang as Lang)) {
+      return urlLang as Lang;
+    }
+  }
+  
+  // 2. Проверяем куки
   const match = document.cookie.match(/(?:^|; )lang=([^;]*)/);
   const val = match ? decodeURIComponent(match[1]) : null;
   
-  // Если в куках есть валидный язык, используем его
   if (val && LANGS.includes(val as Lang)) {
     return val as Lang;
   }
   
-  // Если куки нет/невалидны, пробуем язык браузера
-  if (typeof navigator !== 'undefined') {
-    const browserLang = navigator.language.split('-')[0].toLowerCase() as Lang;
-    
-    // Приоритет для русского языка
-    if (browserLang === 'ru') {
-      return 'ru';
-    }
-    
-    if (LANGS.includes(browserLang)) {
-      return browserLang;
-    }
-  }
+  // 3. Если куки нет/невалидны, используем DEFAULT_LANG (русский)
+  // Больше НЕ проверяем navigator.language, чтобы не было жесткой привязки к словацкому/румынскому
   
   return DEFAULT_LANG;
 }
@@ -55,6 +54,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(getCookieLang);
 
   useEffect(() => {
+    // Если в URL есть параметр lang, сохраняем его в куки
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (urlLang && LANGS.includes(urlLang as Lang)) {
+        setLangState(urlLang as Lang);
+        setCookieLang(urlLang as Lang);
+        document.documentElement.lang = urlLang as Lang;
+        return;
+      }
+    }
+    
     // синхронизируем html[lang] при старте и при изменении языка
     document.documentElement.lang = lang;
   }, [lang]);
