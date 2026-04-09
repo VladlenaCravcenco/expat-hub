@@ -11,7 +11,21 @@ function getCookieLang(): Lang {
   if (typeof document === 'undefined') return DEFAULT_LANG;
   const match = document.cookie.match(/(?:^|; )lang=([^;]*)/);
   const val = match ? decodeURIComponent(match[1]) : null;
-  return val && LANGS.includes(val as Lang) ? (val as Lang) : DEFAULT_LANG;
+  
+  // Если в куках есть валидный язык, используем его
+  if (val && LANGS.includes(val as Lang)) {
+    return val as Lang;
+  }
+  
+  // Если куки нет/невалидны, пробуем язык браузера
+  if (typeof navigator !== 'undefined') {
+    const browserLang = navigator.language.split('-')[0].toLowerCase() as Lang;
+    if (LANGS.includes(browserLang)) {
+      return browserLang;
+    }
+  }
+  
+  return DEFAULT_LANG;
 }
 
 function setCookieLang(lang: Lang) {
@@ -35,9 +49,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(getCookieLang);
 
   useEffect(() => {
-    // синхронизируем html[lang] при старте
+    // синхронизируем html[lang] при старте и при изменении языка
     document.documentElement.lang = lang;
-  }, []);
+  }, [lang]);
 
   const setLang = (l: Lang) => {
     setLangState(l);

@@ -33,7 +33,7 @@ const META: Record<string, { lang: string; title: string; desc: string; ogTitle:
 };
 
 const LANGS = Object.keys(META);
-const DEFAULT = 'ro';
+const DEFAULT = 'ru';
 const OG_IMAGE = 'https://www.lexbusinesshub.ro/og-image.jpg';
 
 export default async function middleware(req: Request): Promise<Response> {
