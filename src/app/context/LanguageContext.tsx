@@ -5,7 +5,7 @@ import type { Lang, Translations } from '../i18n/translations';
 
 const LANGS: Lang[] = ['ro', 'ru', 'en', 'uk'];
 const COOKIE_NAME = 'lang';
-const DEFAULT_LANG: Lang = 'ro';
+const DEFAULT_LANG: Lang = 'ru';
 
 function getCookieLang(): Lang {
   if (typeof document === 'undefined') return DEFAULT_LANG;
