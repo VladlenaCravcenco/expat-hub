@@ -20,6 +20,12 @@ function getCookieLang(): Lang {
   // Если куки нет/невалидны, пробуем язык браузера
   if (typeof navigator !== 'undefined') {
     const browserLang = navigator.language.split('-')[0].toLowerCase() as Lang;
+    
+    // Приоритет для русского языка
+    if (browserLang === 'ru') {
+      return 'ru';
+    }
+    
     if (LANGS.includes(browserLang)) {
       return browserLang;
     }
