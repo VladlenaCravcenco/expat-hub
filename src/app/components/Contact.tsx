@@ -293,7 +293,7 @@ export function Contact() {
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
                     </svg>
                   </a>
-                  <a href="#" aria-label="TikTok"
+                  <a href="https://www.tiktok.com/@lex.business.hub?_r=1&_t=ZN-95aclBAe7wk" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 8, background: '#f1f5f9', color: '#64748b', transition: 'background 0.2s, color 0.2s', textDecoration: 'none' }}
                     onMouseEnter={e => socialHover(e.currentTarget as HTMLAnchorElement, true)}
                     onMouseLeave={e => socialHover(e.currentTarget as HTMLAnchorElement, false)}
