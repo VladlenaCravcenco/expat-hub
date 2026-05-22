@@ -137,7 +137,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, delay: 0.2 + (index * 0.15), ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group h-full flex flex-col">
+      <div className="bg-white rounded-[14px] overflow-hidden border border-[#dde5f8] shadow-sm hover:shadow-lg transition-all duration-500 group h-full flex flex-col">
         {/* Photo */}
         <div className="relative overflow-hidden aspect-[4/5] flex-shrink-0">
           <img
@@ -146,7 +146,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f1a30]/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/70 via-[#0f172a]/10 to-transparent" />
           
           {/* Name & Role on image */}
           <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -161,11 +161,11 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
               {member.name}
             </h3>
             <p 
-              className="text-[#e8742a] uppercase tracking-wider"
+              className="text-[#cfe0ff] uppercase tracking-wider"
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.65rem',
-                letterSpacing: '0.1em',
+                fontSize: '0.68rem',
+                letterSpacing: '0.12em',
               }}
             >
               {member.role}
@@ -178,28 +178,30 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
           <div className="flex gap-2 mb-4">
             <button
               onClick={() => setActiveTab('about')}
-              className={`flex-1 py-1.5 px-3 rounded-[16px] transition-all duration-300 ${
+              className={`flex-1 py-2 px-3 rounded-[10px] border transition-all duration-300 ${
                 activeTab === 'about'
-                  ? 'bg-[#e8742a] text-white'
-                  : 'bg-[#faf8f5] text-[#6b7280] hover:text-[#0f1a30]'
+                  ? 'bg-[#2F71BE] text-white border-[#2F71BE]'
+                  : 'bg-[#f8fbff] text-[#64748b] border-[#dde5f8] hover:text-[#0f172a] hover:border-[#bfd1f3]'
               }`}
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.875rem',
+                fontSize: '0.825rem',
+                fontWeight: 600,
               }}
             >
               Об опыте
             </button>
             <button
               onClick={() => setActiveTab('reviews')}
-              className={`flex-1 py-1.5 px-3 rounded-[16px] transition-all duration-300 ${
+              className={`flex-1 py-2 px-3 rounded-[10px] border transition-all duration-300 ${
                 activeTab === 'reviews'
-                  ? 'bg-[#e8742a] text-white'
-                  : 'bg-[#faf8f5] text-[#6b7280] hover:text-[#0f1a30]'
+                  ? 'bg-[#2F71BE] text-white border-[#2F71BE]'
+                  : 'bg-[#f8fbff] text-[#64748b] border-[#dde5f8] hover:text-[#0f172a] hover:border-[#bfd1f3]'
               }`}
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.875rem',
+                fontSize: '0.825rem',
+                fontWeight: 600,
               }}
             >
               Отзывы
@@ -215,7 +217,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                 className="flex flex-col gap-5"
               >
                 <p
-                  className="text-[#6b7280] leading-relaxed"
+                  className="text-[#475569] leading-relaxed"
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.8rem',
@@ -228,7 +230,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                   {member.highlights.map((highlight, i) => (
                     <div key={i} className="text-center">
                       <div
-                        className="text-[#e8742a] mb-0.5"
+                        className="text-[#2F71BE] mb-0.5"
                         style={{
                           fontFamily: 'var(--font-serif)',
                           fontSize: '1.1rem',
@@ -238,7 +240,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                         {highlight.value}
                       </div>
                       <div
-                        className="text-[#6b7280]"
+                        className="text-[#64748b]"
                         style={{
                           fontFamily: 'var(--font-sans)',
                           fontSize: '0.6rem',
@@ -259,7 +261,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                 transition={{ duration: 0.25 }}
                 className="flex flex-col gap-4"
               >
-                <div className="pb-3 border-b border-[#e8742a]/10">
+                <div className="pb-3 border-b border-[#dde5f8]">
                   <div className="flex items-center justify-between gap-3">
                     <div>
                       <div className="flex items-center gap-2 mb-0.5">
@@ -275,12 +277,12 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                         </div>
                         <div className="flex gap-0.5">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} size={14} fill="#e8742a" color="#e8742a" />
+                            <Star key={i} size={14} fill="#2F71BE" color="#2F71BE" />
                           ))}
                         </div>
                       </div>
                       <p
-                        className="text-[#6b7280]"
+                        className="text-[#64748b]"
                         style={{
                           fontFamily: 'var(--font-sans)',
                           fontSize: '0.65rem',
@@ -293,7 +295,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                       href={member.googleReviews}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-2.5 py-1 rounded-full bg-[#faf8f5] text-[#0f1a30] hover:bg-[#e8742a] hover:text-white transition-all duration-300"
+                      className="px-2.5 py-1 rounded-[8px] border border-[#dde5f8] bg-[#f8fbff] text-[#2F71BE] hover:bg-[#2F71BE] hover:text-white hover:border-[#2F71BE] transition-all duration-300"
                       style={{
                         fontFamily: 'var(--font-sans)',
                         fontSize: '0.65rem',
@@ -307,7 +309,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
 
                 <div className="space-y-3">
                   {member.reviews.map((review, i) => (
-                    <div key={i} className="pb-3 border-b border-[#e8742a]/5 last:border-0">
+                    <div key={i} className="pb-3 border-b border-[#eef3fc] last:border-0">
                       <div className="flex items-start justify-between mb-1.5">
                         <p
                           className="text-[#0f1a30]"
@@ -321,12 +323,12 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                         </p>
                         <div className="flex gap-0.5">
                           {[...Array(review.rating)].map((_, i) => (
-                            <Star key={i} size={9} fill="#e8742a" color="#e8742a" />
+                            <Star key={i} size={9} fill="#2F71BE" color="#2F71BE" />
                           ))}
                         </div>
                       </div>
                       <p
-                        className="text-[#6b7280] mb-1.5 leading-relaxed"
+                        className="text-[#475569] mb-1.5 leading-relaxed"
                         style={{
                           fontFamily: 'var(--font-sans)',
                           fontSize: '0.7rem',
@@ -335,7 +337,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                         {review.text}
                       </p>
                       <p
-                        className="text-[#6b7280]"
+                        className="text-[#64748b]"
                         style={{
                           fontFamily: 'var(--font-sans)',
                           fontSize: '0.6rem',
@@ -351,7 +353,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-gradient-to-r from-transparent via-[#e8742a]/20 to-transparent my-4 flex-shrink-0" />
+          <div className="h-px bg-gradient-to-r from-transparent via-[#d7e4fa] to-transparent my-4 flex-shrink-0" />
 
           {/* Social & CTA */}
           <div className="flex items-center justify-between gap-4 flex-shrink-0">
@@ -361,7 +363,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                 href={member.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-[#faf8f5] flex items-center justify-center text-[#0f1a30] hover:bg-[#e8742a] hover:text-white transition-all duration-300"
+                className="w-8 h-8 rounded-[10px] border border-[#dde5f8] bg-[#f8fbff] flex items-center justify-center text-[#2F71BE] hover:bg-[#2F71BE] hover:text-white hover:border-[#2F71BE] transition-all duration-300"
                 aria-label="Instagram"
               >
                 <Instagram size={14} />
@@ -370,7 +372,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                 href={member.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-[#faf8f5] flex items-center justify-center text-[#0f1a30] hover:bg-[#e8742a] hover:text-white transition-all duration-300"
+                className="w-8 h-8 rounded-[10px] border border-[#dde5f8] bg-[#f8fbff] flex items-center justify-center text-[#2F71BE] hover:bg-[#2F71BE] hover:text-white hover:border-[#2F71BE] transition-all duration-300"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={14} />
@@ -379,10 +381,8 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
 
             {/* Consultation CTA */}
             <a
-              href={member.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#e8742a] text-white hover:bg-[#d66820] transition-all duration-300 group/btn"
+              href="#contact"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-[10px] bg-[#2F71BE] text-white hover:bg-[#255d9f] transition-all duration-300 group/btn"
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.7rem',
@@ -404,40 +404,34 @@ export function Team() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="team" className="py-20 sm:py-28 md:py-32 bg-[#faf8f5] overflow-hidden relative" ref={ref}>
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-16">
+    <section id="team" className="py-20 sm:py-28 md:py-32 bg-white overflow-hidden relative" ref={ref}>
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section header */}
-        <div className="mb-20 text-center">
+        <div className="mb-14">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div 
-              className="uppercase tracking-wider text-[#e8742a] mb-6"
+            <h2
+              className="mb-4"
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.875rem',
+                fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+                fontWeight: 700,
+                lineHeight: 1.15,
+                color: '#0f172a',
+                letterSpacing: '-0.02em',
               }}
             >
-              Команда
-            </div>
-            <h2
-              className="mb-6"
-              style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-                fontWeight: 600,
-                color: '#0f1a30',
-              }}
-            >
-              Познакомьтесь с нашей командо
+              Познакомьтесь с нашей командой
             </h2>
             <p 
-              className="text-[#6b7280] max-w-2xl mx-auto"
+              className="text-[#64748b] max-w-xl"
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '1rem',
+                fontSize: 'clamp(0.9rem, 1.3vw, 1rem)',
+                lineHeight: 1.7,
               }}
             >
               Профессионалы, которые помогут вам на каждом этапе развития бизнеса в Румынии
@@ -446,7 +440,7 @@ export function Team() {
         </div>
 
         {/* Team grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {team.map((member, index) => (
             <TeamMemberCard key={index} member={member} index={index} isInView={isInView} />
           ))}
