@@ -3,16 +3,15 @@ import { useInView } from 'motion/react';
 import { useRef, useState } from 'react';
 import { Instagram, Linkedin, Calendar, Star } from 'lucide-react';
 
-// Team member photos — Unsplash (works everywhere including Vercel)
-const photo1 = 'https://images.unsplash.com/photo-1736939681295-bb2e6759dddc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMGxhd3llciUyMGJ1c2luZXNzJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzczMTQ3NzA5fDA&ixlib=rb-4.1.0&q=80&w=1080';
-const photo2 = 'https://images.unsplash.com/photo-1720874129553-1d2e66076b16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB3b21hbiUyMG1hcmtldGluZyUyMG1hbmFnZXIlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NzMxNDIyMDl8MA&ixlib=rb-4.1.0&q=80&w=1080';
-const photo3 = 'https://images.unsplash.com/photo-1758518731009-66fc99eb20e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBidXNpbmVzc3dvbWFuJTIwcG9ydHJhaXQlMjBvZmZpY2V8ZW58MXx8fHwxNzczMTQwNDQ5fDA&ixlib=rb-4.1.0&q=80&w=1080';
+const photo1 = '/team/aliona-1.jpg';
+const photo2 = '/team/Aliona-2.jpg';
+const photo3 = '/team/aliona-3.jpg';
 
 const team = [
   {
     name: 'Алёна Биволару',
     role: 'Переводчик',
-    image: photo3,
+    image: photo1,
     about: 'Профессиональный переводчик с румынского, молдавского и украинского языков. Специализируюсь на юридических и бизнес-документах, обеспечивая точность и конфиденциальность каждого проекта.',
     highlights: [
       { label: 'Опыт работы', value: '8+ лет' },
@@ -51,7 +50,7 @@ const team = [
   {
     name: 'Алёна Пантелей',
     role: 'Легализация',
-    image: photo1,
+    image: photo2,
     about: 'Эксперт по легализации бизнеса и регистрации компаний в Румынии. Помогаю украинским предпринимателям с получением всех необходимых разрешений и документов для ведения бизнеса.',
     highlights: [
       { label: 'Опыт работы', value: '6+ лет' },
@@ -90,7 +89,7 @@ const team = [
   {
     name: 'Алёна Руссу',
     role: 'Маркетинг',
-    image: photo2,
+    image: photo3,
     about: 'Маркетолог с фокусом на развитие бизнеса в новых рынках. Создаю стратегии продвижения ��ля компаний, которые расширяют деятельность в Румынии и Восточной Европе.',
     highlights: [
       { label: 'Опыт работы', value: '7+ лет' },
@@ -137,7 +136,6 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
       initial={{ opacity: 0, y: 60 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, delay: 0.2 + (index * 0.15), ease: [0.22, 1, 0.36, 1] }}
-      className="lg:max-h-[70vh]"
     >
       <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group h-full flex flex-col">
         {/* Photo */}
@@ -176,15 +174,14 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-6 flex-1 flex flex-col min-h-0">
-          {/* Tabs Switcher */}
+        <div className="p-4 sm:p-6 flex-1 flex flex-col">
           <div className="flex gap-2 mb-4">
             <button
               onClick={() => setActiveTab('about')}
               className={`flex-1 py-1.5 px-3 rounded-[16px] transition-all duration-300 ${
-                activeTab === 'about' 
-                  ? 'bg-[#e8742a] text-white' 
-                  : 'text-[#6b7280] hover:text-[#0f1a30]'
+                activeTab === 'about'
+                  ? 'bg-[#e8742a] text-white'
+                  : 'bg-[#faf8f5] text-[#6b7280] hover:text-[#0f1a30]'
               }`}
               style={{
                 fontFamily: 'var(--font-sans)',
@@ -193,13 +190,12 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
             >
               Об опыте
             </button>
-            
             <button
               onClick={() => setActiveTab('reviews')}
               className={`flex-1 py-1.5 px-3 rounded-[16px] transition-all duration-300 ${
-                activeTab === 'reviews' 
-                  ? 'bg-[#e8742a] text-white' 
-                  : 'text-[#6b7280] hover:text-[#0f1a30]'
+                activeTab === 'reviews'
+                  ? 'bg-[#e8742a] text-white'
+                  : 'bg-[#faf8f5] text-[#6b7280] hover:text-[#0f1a30]'
               }`}
               style={{
                 fontFamily: 'var(--font-sans)',
@@ -210,18 +206,16 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
             </button>
           </div>
 
-          {/* Tab Content */}
-          <div className="flex-1 overflow-hidden flex flex-col min-h-0">
+          <div className="flex-1">
             {activeTab === 'about' ? (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col h-full"
+                transition={{ duration: 0.25 }}
+                className="flex flex-col gap-5"
               >
-                {/* About */}
-                <p 
-                  className="text-[#6b7280] mb-4 leading-relaxed"
+                <p
+                  className="text-[#6b7280] leading-relaxed"
                   style={{
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.8rem',
@@ -230,11 +224,10 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                   {member.about}
                 </p>
 
-                {/* Highlights */}
-                <div className="grid grid-cols-3 gap-2 mt-auto">
+                <div className="grid grid-cols-3 gap-2">
                   {member.highlights.map((highlight, i) => (
                     <div key={i} className="text-center">
-                      <div 
+                      <div
                         className="text-[#e8742a] mb-0.5"
                         style={{
                           fontFamily: 'var(--font-serif)',
@@ -244,7 +237,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                       >
                         {highlight.value}
                       </div>
-                      <div 
+                      <div
                         className="text-[#6b7280]"
                         style={{
                           fontFamily: 'var(--font-sans)',
@@ -263,60 +256,60 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col h-full min-h-0"
+                transition={{ duration: 0.25 }}
+                className="flex flex-col gap-4"
               >
-                {/* Google Rating */}
-                <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#e8742a]/10 flex-shrink-0">
-                  <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <div 
-                        className="text-[#0f1a30]"
+                <div className="pb-3 border-b border-[#e8742a]/10">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <div
+                          className="text-[#0f1a30]"
+                          style={{
+                            fontFamily: 'var(--font-serif)',
+                            fontSize: '1.5rem',
+                            fontWeight: 600,
+                          }}
+                        >
+                          {member.rating.toFixed(1)}
+                        </div>
+                        <div className="flex gap-0.5">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={14} fill="#e8742a" color="#e8742a" />
+                          ))}
+                        </div>
+                      </div>
+                      <p
+                        className="text-[#6b7280]"
                         style={{
-                          fontFamily: 'var(--font-serif)',
-                          fontSize: '1.5rem',
-                          fontWeight: 600,
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: '0.65rem',
                         }}
                       >
-                        {member.rating.toFixed(1)}
-                      </div>
-                      <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={14} fill="#e8742a" color="#e8742a" />
-                        ))}
-                      </div>
+                        {member.reviewsCount} отзывов
+                      </p>
                     </div>
-                    <p 
-                      className="text-[#6b7280]"
+                    <a
+                      href={member.googleReviews}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 rounded-full bg-[#faf8f5] text-[#0f1a30] hover:bg-[#e8742a] hover:text-white transition-all duration-300"
                       style={{
                         fontFamily: 'var(--font-sans)',
                         fontSize: '0.65rem',
+                        fontWeight: 500,
                       }}
                     >
-                      {member.reviewsCount} отзывов
-                    </p>
+                      Google
+                    </a>
                   </div>
-                  <a
-                    href={member.googleReviews}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-2.5 py-1 rounded-full bg-[#faf8f5] text-[#0f1a30] hover:bg-[#e8742a] hover:text-white transition-all duration-300"
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.65rem',
-                      fontWeight: 500,
-                    }}
-                  >
-                    Google
-                  </a>
                 </div>
 
-                {/* Reviews List */}
-                <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar flex-1 min-h-0">
+                <div className="space-y-3">
                   {member.reviews.map((review, i) => (
                     <div key={i} className="pb-3 border-b border-[#e8742a]/5 last:border-0">
                       <div className="flex items-start justify-between mb-1.5">
-                        <p 
+                        <p
                           className="text-[#0f1a30]"
                           style={{
                             fontFamily: 'var(--font-sans)',
@@ -332,7 +325,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                           ))}
                         </div>
                       </div>
-                      <p 
+                      <p
                         className="text-[#6b7280] mb-1.5 leading-relaxed"
                         style={{
                           fontFamily: 'var(--font-sans)',
@@ -341,7 +334,7 @@ function TeamMemberCard({ member, index, isInView }: { member: typeof team[0], i
                       >
                         {review.text}
                       </p>
-                      <p 
+                      <p
                         className="text-[#6b7280]"
                         style={{
                           fontFamily: 'var(--font-sans)',

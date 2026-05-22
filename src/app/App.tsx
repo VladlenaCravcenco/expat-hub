@@ -7,6 +7,7 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { TrustedBrands } from './components/TrustedBrands';
 import { Services } from './components/Services';
+import { Team } from './components/Team';
 import { CTA } from './components/CTA';
 import { Process } from './components/Process';
 import { FAQ } from './components/FAQ';
@@ -30,6 +31,7 @@ function HomePage() {
         <About />
         <TrustedBrands />
         <Services />
+        <Team />
         <CTA onOpenModal={() => setIsModalOpen(true)} />
         <Process />
         <FAQ />
