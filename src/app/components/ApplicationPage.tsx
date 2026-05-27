@@ -60,6 +60,10 @@ export function ApplicationPage() {
   }, [pageLang]);
 
   const serviceOptions = useMemo(() => copy.serviceOptions as string[], [copy.serviceOptions]);
+  const featuredOptions = useMemo(
+    () => (copy.featuredOptions ?? copy.serviceOptions) as string[],
+    [copy.featuredOptions, copy.serviceOptions]
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -111,6 +115,22 @@ export function ApplicationPage() {
         <title>{copy.title} | LEX BUSINESS HUB</title>
         <meta name="description" content={copy.description} />
       </Helmet>
+
+      <style>
+        {`
+          .application-services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+          }
+
+          @media (max-width: 640px) {
+            .application-services-grid {
+              grid-template-columns: minmax(0, 1fr);
+            }
+          }
+        `}
+      </style>
 
       <motion.div
         style={{
@@ -324,7 +344,7 @@ export function ApplicationPage() {
                 </p>
 
                 <div style={{ display: 'grid', gap: 10 }}>
-                  {serviceOptions.slice(0, 6).map((item) => (
+                  {featuredOptions.map((item) => (
                     <div
                       key={item}
                       style={{
@@ -504,13 +524,7 @@ export function ApplicationPage() {
                     {copy.services}
                   </span>
 
-                  <div
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
-                      gap: 12,
-                    }}
-                  >
+                  <div className="application-services-grid">
                     {serviceOptions.map((option) => {
                       const checked = selectedServices.includes(option);
                       return (
