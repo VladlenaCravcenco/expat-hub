@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router';
 import { PhoneInputField } from './PhoneInputField';
-import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../i18n/translations';
 import type { Lang } from '../i18n/translations';
 import { sendToTelegram } from '../utils/telegram';
 
@@ -37,7 +37,7 @@ const inputFocus: React.CSSProperties = {
 
 export function ApplicationPage() {
   const navigate = useNavigate();
-  const { lang, setLang, t } = useLanguage();
+  const [pageLang, setPageLang] = useState<Lang>('ro');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -51,12 +51,13 @@ export function ApplicationPage() {
   const [servicesTouched, setServicesTouched] = useState(false);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'not_configured'>('idle');
 
-  const copy = t.application;
+  const copy = translations[pageLang].application;
   const hasServices = selectedServices.length > 0;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
-  }, []);
+    document.documentElement.lang = pageLang;
+  }, [pageLang]);
 
   const serviceOptions = useMemo(() => copy.serviceOptions as string[], [copy.serviceOptions]);
 
@@ -227,12 +228,12 @@ export function ApplicationPage() {
                 <span key={item.code} style={{ display: 'flex', alignItems: 'center' }}>
                   <button
                     type="button"
-                    onClick={() => setLang(item.code)}
+                    onClick={() => setPageLang(item.code)}
                     style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: '0.8rem',
-                      fontWeight: lang === item.code ? 700 : 500,
-                      color: lang === item.code ? '#0f172a' : '#7b8aa0',
+                      fontWeight: pageLang === item.code ? 700 : 500,
+                      color: pageLang === item.code ? '#0f172a' : '#7b8aa0',
                       background: 'none',
                       border: 'none',
                       cursor: 'pointer',
