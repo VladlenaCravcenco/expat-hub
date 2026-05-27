@@ -45,7 +45,11 @@ export function Contact() {
     }
     setStatus('sending');
     try {
-      await sendToTelegram({ ...formData, subject: formData.subject || t.contact.form.subjects[0] });
+      await sendToTelegram({
+        ...formData,
+        subject: formData.subject || t.contact.form.subjects[0],
+        leadType: 'consultation',
+      });
       setStatus('success');
       // Redirect to thank-you page — Meta Pixel Lead event fires there
       setTimeout(() => navigate('/thank-you'), 400);

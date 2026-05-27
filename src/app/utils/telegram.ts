@@ -25,6 +25,10 @@ export interface FormData {
   phone: string;
   subject: string;
   message: string;
+  email?: string;
+  entityType?: string;
+  services?: string[];
+  leadType?: 'consultation' | 'service_brief';
 }
 
 const isConfigured =
@@ -36,10 +40,24 @@ export async function sendToTelegram(data: FormData): Promise<void> {
     throw new Error('NOT_CONFIGURED');
   }
 
+  const leadType = data.leadType ?? 'consultation';
+  const leadTitle =
+    leadType === 'service_brief'
+      ? '🧾 <b>Новый бриф на услугу — LEX BUSINESS HUB</b>'
+      : '📞 <b>Новая заявка на консультацию — LEX BUSINESS HUB</b>';
+  const leadLabel =
+    leadType === 'service_brief' ? 'Бриф на услугу' : 'Консультация';
+
   const text =
-    `📩 <b>Новая заявка — LEX BUSINESS HUB</b>\n\n` +
+    `${leadTitle}\n\n` +
+    `🏷 <b>Тип заявки:</b> ${leadLabel}\n` +
     `👤 <b>Имя:</b> ${esc(data.name)}\n` +
     `📞 <b>Телефон:</b> ${esc(data.phone)}\n` +
+    (data.email ? `📧 <b>Email:</b> ${esc(data.email)}\n` : '') +
+    (data.entityType ? `🏢 <b>Тип клиента:</b> ${esc(data.entityType)}\n` : '') +
+    (data.services?.length
+      ? `🧩 <b>Запросы:</b> ${esc(data.services.join(', '))}\n`
+      : '') +
     `📌 <b>Тема:</b> ${esc(data.subject)}\n\n` +
     `💬 <b>Сообщение:</b>\n${esc(data.message)}`;
 

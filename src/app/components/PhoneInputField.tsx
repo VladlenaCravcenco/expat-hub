@@ -22,6 +22,9 @@ interface PhoneInputFieldProps {
   variant?: 'default' | 'modal';
   required?: boolean;
   label?: string;
+  validText?: string;
+  invalidText?: string;
+  formatPrefix?: string;
 }
 
 export function PhoneInputField({
@@ -31,6 +34,9 @@ export function PhoneInputField({
   variant = 'default',
   required = true,
   label = 'Telefon',
+  validText = '✓ Număr valid',
+  invalidText = 'Număr invalid',
+  formatPrefix = 'Format:',
 }: PhoneInputFieldProps) {
   const [focused, setFocused] = useState(false);
   const [touched, setTouched] = useState(false);
@@ -158,10 +164,12 @@ export function PhoneInputField({
           minHeight: 16,
           color: showError ? '#ef4444' : showSuccess ? '#22c55e' : '#b0bec8',
         }}>
-          {showSuccess
-            ? '✓ Număr valid'
+          {showError
+            ? invalidText
+            : showSuccess
+            ? validText
             : hint
-            ? `Format: ${hint}`
+            ? `${formatPrefix} ${hint}`
             : ''}
         </p>
       </div>

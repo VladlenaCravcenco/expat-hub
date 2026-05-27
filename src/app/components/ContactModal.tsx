@@ -37,7 +37,11 @@ export function ContactModal({ open, onOpenChange }: ContactModalProps) {
     if (!phoneValid) return;
     setStatus('sending');
     try {
-      await sendToTelegram({ ...formData, subject: formData.subject || t.modal.subjects[0] });
+      await sendToTelegram({
+        ...formData,
+        subject: formData.subject || t.modal.subjects[0],
+        leadType: 'consultation',
+      });
       setStatus('success');
       setTimeout(() => {
         onOpenChange(false);

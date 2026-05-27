@@ -1,6 +1,7 @@
 import type { MouseEvent } from 'react';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { Link } from 'react-router';
 import { scrollToSection } from '../utils/navigation';
 // Removed figma:asset import — using inline logo instead
 import { useLanguage } from '../context/LanguageContext';
@@ -208,6 +209,35 @@ export function Header() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, flexShrink: 0 }}>
             <LangSwitcher />
 
+            <Link
+              to="/application"
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '0.875rem',
+                fontWeight: 600,
+                padding: '9px 18px',
+                background: '#eef3fc',
+                color: '#1f4f8f',
+                borderRadius: 8,
+                textDecoration: 'none',
+                border: '1px solid #d7e2ef',
+                transition: 'background 0.18s, color 0.18s, border-color 0.18s',
+                whiteSpace: 'nowrap',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.background = '#e0ebfa';
+                (e.currentTarget as HTMLElement).style.borderColor = '#c3d5ec';
+                (e.currentTarget as HTMLElement).style.color = '#17386b';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.background = '#eef3fc';
+                (e.currentTarget as HTMLElement).style.borderColor = '#d7e2ef';
+                (e.currentTarget as HTMLElement).style.color = '#1f4f8f';
+              }}
+            >
+              {t.nav.brief}
+            </Link>
+
             <a
               href="#contact"
               onClick={e => navClick(e, '#contact')}
@@ -313,6 +343,26 @@ export function Header() {
                   {link.label}
                 </a>
               ))}
+              <Link
+                to="/application"
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '1rem',
+                  fontWeight: 600,
+                  color: '#1f4f8f',
+                  textDecoration: 'none',
+                  padding: '11px 14px',
+                  borderRadius: 8,
+                  background: '#eef3fc',
+                  border: '1px solid #d7e2ef',
+                  marginTop: 8,
+                  display: 'block',
+                  textAlign: 'center',
+                }}
+              >
+                {t.nav.brief}
+              </Link>
               <a
                 href="#contact"
                 onClick={e => navClick(e, '#contact')}
