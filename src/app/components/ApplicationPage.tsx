@@ -123,6 +123,32 @@ export function ApplicationPage() {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
           }
+
+          .application-service-item {
+            min-width: 0;
+            padding: 14px 16px;
+            gap: 12px;
+          }
+
+          .application-service-label {
+            min-width: 0;
+            font-size: 0.93rem;
+            line-height: 1.4;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+          }
+
+          @media (max-width: 640px) {
+            .application-service-item {
+              padding: 12px;
+              gap: 10px;
+            }
+
+            .application-service-label {
+              font-size: 0.82rem;
+              line-height: 1.3;
+            }
+          }
         `}
       </style>
 
@@ -524,11 +550,10 @@ export function ApplicationPage() {
                       return (
                         <label
                           key={option}
+                          className="application-service-item"
                           style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: 12,
-                            padding: '14px 16px',
                             borderRadius: 14,
                             border: `1.5px solid ${checked ? '#2F71BE' : '#d7e2ef'}`,
                             background: checked ? 'rgba(47,113,190,0.06)' : '#f8fafc',
@@ -543,11 +568,10 @@ export function ApplicationPage() {
                             style={{ accentColor: '#2F71BE' }}
                           />
                           <span
+                            className="application-service-label"
                             style={{
                               fontFamily: 'var(--font-sans)',
-                              fontSize: '0.93rem',
                               color: '#0f172a',
-                              lineHeight: 1.4,
                             }}
                           >
                             {option}
