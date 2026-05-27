@@ -123,12 +123,6 @@ export function ApplicationPage() {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
           }
-
-          @media (max-width: 640px) {
-            .application-services-grid {
-              grid-template-columns: minmax(0, 1fr);
-            }
-          }
         `}
       </style>
 
