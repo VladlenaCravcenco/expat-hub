@@ -584,9 +584,9 @@
 .event-registration-error { margin: 12px 0 0; color: #b91c1c; font-family: var(--font-sans); font-size: 12px; text-align: center; }
 .event-registration-card button { width: 100%; margin-top: 18px; padding: 16px 20px; border: 0; border-radius: 999px; background: #2f68b3; color: #fff; cursor: pointer; font-family: var(--font-sans); font-size: 18px; font-weight: 400; transition: background .2s; }
 .event-registration-card button:hover { background: #23599e; }.event-registration-card button:disabled { cursor: wait; opacity: .7; }
-.event-sticky-cta { position: fixed; z-index: 45; right: 16px; bottom: 16px; left: 16px; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 16px 20px; border-radius: 999px; background: #2f68b3; box-shadow: 0 12px 32px rgba(12, 35, 80, .25); color: #fff; font-family: var(--font-sans); font-size: 18px; text-align: center; text-decoration: none; opacity: 0; pointer-events: none; transform: translateY(24px); transition: opacity .22s, transform .22s, background .2s; }
+.event-sticky-cta { position: fixed; z-index: 45; right: 16px; bottom: 16px; left: 16px; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 16px 20px; border-radius: 999px; background: #0a1d50; box-shadow: 0 12px 32px rgba(12, 35, 80, .25); color: #fff; font-family: var(--font-sans); font-size: 18px; text-align: center; text-decoration: none; opacity: 0; pointer-events: none; transform: translateY(24px); transition: opacity .22s, transform .22s, background .2s; }
 .event-sticky-cta-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.event-sticky-cta:hover, .event-sticky-cta:focus-visible { background: #23599e; }
+.event-sticky-cta:hover, .event-sticky-cta:focus-visible { background: #132b67; }
 .event-sticky-cta svg { width: 22px; height: 22px; flex: 0 0 auto; stroke-width: 1; }
 
 @media (min-width: 768px) {
