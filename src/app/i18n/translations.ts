@@ -7,6 +7,7 @@ export const translations = {
     // Header
     nav: {
       services: 'Servicii',
+      events: 'Evenimente',
       process: 'Proces',
       faq: 'FAQ',
       contact: 'Contact',
@@ -353,6 +354,7 @@ export const translations = {
   ru: {
     nav: {
       services: 'Услуги',
+      events: 'Мероприятия',
       process: 'Процесс',
       faq: 'FAQ',
       contact: 'Контакты',
@@ -691,6 +693,7 @@ export const translations = {
   en: {
     nav: {
       services: 'Services',
+      events: 'Events',
       process: 'Process',
       faq: 'FAQ',
       contact: 'Contact',
@@ -1026,6 +1029,7 @@ export const translations = {
   uk: {
     nav: {
       services: 'Послуги',
+      events: 'Події',
       process: 'Процес',
       faq: 'FAQ',
       contact: 'Контакти',

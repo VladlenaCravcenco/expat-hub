@@ -1,7 +1,7 @@
 import type { MouseEvent } from 'react';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { scrollToSection } from '../utils/navigation';
 // Removed figma:asset import — using inline logo instead
 import { useLanguage } from '../context/LanguageContext';
@@ -23,6 +23,8 @@ export function Header() {
     typeof window !== 'undefined' ? window.innerWidth < BREAKPOINT : false
   );
   const { lang, setLang, t } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -46,6 +48,7 @@ export function Header() {
 
   const navLinks = [
     { href: '#services', label: t.nav.services },
+    { href: '/events',   label: t.nav.events   },
     { href: '#process',  label: t.nav.process  },
     { href: '#faq',      label: t.nav.faq      },
     { href: '#contact',  label: t.nav.contact  },
@@ -53,11 +56,26 @@ export function Header() {
 
   const navClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    if (href.startsWith('/')) {
+      setMenuOpen(false);
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const scroll = () => scrollToSection(href);
+    if (location.pathname !== '/') {
+      setMenuOpen(false);
+      navigate('/');
+      setTimeout(scroll, 120);
+      return;
+    }
+
     if (menuOpen) {
       setMenuOpen(false);
-      setTimeout(() => scrollToSection(href), 260);
+      setTimeout(scroll, 260);
     } else {
-      scrollToSection(href);
+      scroll();
     }
   };
 

@@ -20,6 +20,7 @@ import { FloatingContacts } from './components/FloatingContacts';
 import { CookieConsent } from './components/CookieConsent';
 import { ThankYou } from './components/ThankYou';
 import { ApplicationPage } from './components/ApplicationPage';
+import { EventsPage } from './components/EventsPage';
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,6 +55,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/application" element={<ApplicationPage />} />
+            <Route path="/events" element={<EventsPage />} />
             <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
           <Analytics />

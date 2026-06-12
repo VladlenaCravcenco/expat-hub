@@ -2,12 +2,21 @@ import type { MouseEvent } from 'react';
 import { scrollToSection } from '../utils/navigation';
 import { Logo } from './Logo';
 import { useLanguage } from '../context/LanguageContext';
+import { useLocation, useNavigate } from 'react-router';
 
 export function Footer() {
   const { t } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
   const nav = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    if (href !== '#') scrollToSection(href);
+    if (href === '#') return;
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => scrollToSection(href), 120);
+      return;
+    }
+    scrollToSection(href);
   };
   const serviceAnchors = ['#services', '#services', '#services'];
   const companyAnchors = ['#services', '#process', '#contact'];
