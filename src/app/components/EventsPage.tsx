@@ -565,19 +565,21 @@ export function EventsPage() {
             </div>
 
             <form className="event-registration-card" onSubmit={submitRegistration}>
-              <div className="event-registration-image">
-                <div className="event-registration-remaining">
-                  <span>{registration.remaining}</span><strong>20</strong><span>{registration.places}</span>
+              <div className="event-registration-left">
+                <div className="event-registration-image">
+                  <div className="event-registration-remaining">
+                    <span>{registration.remaining}</span><strong>20</strong><span>{registration.places}</span>
+                  </div>
                 </div>
+                <p className="event-registration-notice">{registration.notice}</p>
+
+                <dl className="event-registration-meta">
+                  <div><dt>{registration.date}</dt><dd>23.06.2026</dd></div>
+                  <div><dt>{registration.time}</dt><dd>18:00</dd></div>
+                  <div><dt>{registration.format}</dt><dd>{registration.live}</dd></div>
+                </dl>
               </div>
-              <p className="event-registration-notice">{registration.notice}</p>
-
-              <dl className="event-registration-meta">
-                <div><dt>{registration.date}</dt><dd>23.06.2026</dd></div>
-                <div><dt>{registration.time}</dt><dd>18:00</dd></div>
-                <div><dt>{registration.format}</dt><dd>{registration.live}</dd></div>
-              </dl>
-
+              <div className="event-registration-right">
               <div className="event-registration-price"><span>{registration.priceLabel}</span><strong>300 RON</strong></div>
 
               <div className="event-registration-fields">
@@ -598,6 +600,7 @@ export function EventsPage() {
               </label>
               {registrationStatus === 'error' && <p className="event-registration-error">{registration.error}</p>}
               <button type="submit" disabled={registrationStatus === 'sending' || !registrationForm.consent}>{registrationStatus === 'sending' ? registration.sending : registration.submit}</button>
+              </div>
             </form>
           </div>
         </section>

@@ -307,7 +307,7 @@
   width: min(100%, 940px);
   margin: 0 auto;
   padding: 54px 18px 36px;
-  border-radius: 32px;
+  border-radius: 24px;
   background: #ffffff;
 }
 
@@ -809,7 +809,7 @@
     row-gap: 30px;
     align-items: start;
     padding: clamp(32px, 3vw, 48px);
-    border-radius: 36px;
+    border-radius: 30px;
   }
 
   .event-meta {
@@ -933,7 +933,7 @@
     margin-top: 0;
     border-radius: 18px;
     background-size: cover;
-    background-position: center top;
+    background-position: center center;
   }
 
   .event-hero-copy {
@@ -1030,7 +1030,7 @@
   .event-speaker-inner {
     width: min(100%, 1440px);
     padding: clamp(46px, 4.5vw, 70px);
-    border-radius: 28px;
+    border-radius: 24px;
   }
 
   .event-speaker h2 {
@@ -1266,7 +1266,7 @@
     margin: 0;
     padding: clamp(28px, 3vw, 40px);
     border: 1px solid #b8d0ed;
-    border-radius: 34px;
+    border-radius: 24px;
   }
 
   .event-outcome-card h3 {
@@ -1296,7 +1296,7 @@
 
   .event-registration-heading {
     position: static;
-    margin: 0 auto clamp(72px, 8vh, 100px);
+    margin: 0 auto clamp(30px, 8vh, 50px);
     text-align: center;
   }
 
@@ -1329,11 +1329,17 @@
   .event-registration-card {
     display: grid;
     grid-template-columns: minmax(360px, 0.9fr) minmax(520px, 1.1fr);
-    grid-template-rows: auto auto auto auto auto;
-    column-gap: clamp(52px, 6vw, 90px);
-    padding: clamp(54px, 5vw, 76px);
-    border-radius: 38px;
+   
+    column-gap: clamp(32px, 4vw, 56px);
+    padding: clamp(36px, 4vw, 56px);
+    border-radius: 24px;
   }
+
+  .event-registration-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
   .event-registration-image {
     grid-column: 1;
@@ -1392,6 +1398,7 @@
     grid-row: 1;
     align-self: start;
     padding: 8px 0 20px;
+    width: 100%;
   }
 
   .event-registration-price span {
@@ -1436,6 +1443,8 @@
   .event-registration-consent {
     grid-row: 3;
     align-self: end;
+        width: 100%;
+
   }
 
   .event-registration-error {
