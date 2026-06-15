@@ -11,7 +11,7 @@ const LANGS: { code: Lang; label: string }[] = [
   { code: 'ro', label: 'RO' },
   { code: 'ru', label: 'RU' },
   { code: 'en', label: 'EN' },
-  { code: 'uk', label: 'UK' },
+  { code: 'uk', label: 'UA' },
 ];
 
 const BREAKPOINT = 768;
