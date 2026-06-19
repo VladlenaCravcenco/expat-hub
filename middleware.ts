@@ -36,7 +36,7 @@ const LANGS = Object.keys(META);
 const DEFAULT = 'ru';
 const SITE_URL = 'https://www.lexbusinesshub.ro';
 const BASE_OG_IMAGE = `${SITE_URL}/og-image-base.jpg`;
-const EVENT_OG_IMAGE = `${SITE_URL}/og-image-event.jpg`;
+const EVENT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 const OG_LOCALES: Record<string, string> = {
   ro: 'ro_RO',
   ru: 'ru_RU',

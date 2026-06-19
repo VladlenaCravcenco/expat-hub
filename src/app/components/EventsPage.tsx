@@ -82,7 +82,7 @@ const eventContent: Record<Lang, {
 
 const SITE_URL = 'https://www.lexbusinesshub.ro';
 const EVENT_URL = `${SITE_URL}/events`;
-const EVENT_OG_IMAGE = `${SITE_URL}/og-image-event.jpg`;
+const EVENT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const eventSeoContent: Record<Lang, {
   title: string;
