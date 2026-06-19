@@ -25,7 +25,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        events: 'events.html',
+        events: 'events/index.html',
       },
     },
   },
